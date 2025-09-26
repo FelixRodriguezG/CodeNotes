@@ -1,0 +1,10 @@
+<svg width="720" height="180" viewBox="0 0 720 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">DevNotes logo</title>
+  <desc id="desc">Logo DevNotes como etiqueta de componente autocerrado con símbolos gris claro</desc>
+
+  <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle"
+        font-family="Consolas, Menlo, Monaco, 'Courier New', monospace"
+        font-size="88" font-weight="700" fill="#E2E8F0">
+    &lt;<tspan fill="#10B981">DevNotes</tspan> /&gt;
+  </text>
+</svg>
