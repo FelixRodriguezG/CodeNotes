@@ -1,0 +1,28 @@
+@layer utilities {
+  /* ✅ ÚNICA utilidad que define TODO el layout + responsive + colapsado */
+  .layout-app {
+    @apply grid min-h-screen transition-[grid-template-columns] duration-300 bg-[--color-bg];
+
+    /* Base (móvil) — sin footer */
+    @apply [grid-template-areas:'header'_'main'_'sidebar']
+           [grid-template-columns:1fr]
+           [grid-template-rows:auto_1fr_auto];
+
+    /* ≥ md (usa tus breakpoints de @theme) — sidebar a la izquierda */
+    @apply md:[grid-template-areas:'sidebar_header'_'sidebar_main'_'sidebar_footer']
+           md:[grid-template-columns:220px_1fr]
+           md:[grid-template-rows:auto_1fr_auto];
+
+    /* Estado colapsado (deja franja 56px en desktop) con data-attribute */
+    @apply data-[collapsed=true]:md:[grid-template-columns:56px_1fr];
+  }
+
+  /* Áreas semánticas */
+  .area-header  { grid-area: header; }
+  .area-sidebar { grid-area: sidebar; }
+  .area-main    { grid-area: main; }
+  .area-footer  { grid-area: footer; }
+
+  /* Footer oculto en móvil, visible ≥ md */
+  .layout-app .area-footer { @apply hidden md:block; }
+}

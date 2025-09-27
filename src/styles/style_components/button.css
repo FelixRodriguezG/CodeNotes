@@ -1,0 +1,70 @@
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center px-5 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2;
+    }
+
+    /* Variantes */
+    .btn-primary {
+        color: var(--btn-fg);
+        background-color: var(--btn-bg);
+    }
+
+    .btn-primary:hover {
+        background-color: var(--btn-bg-hover);
+    }
+
+    .btn-primary:active {
+        background-color: var(--btn-bg-active);
+    }
+
+    .btn-primary:focus-visible {
+        ring-color: var(--btn-outline-ring);
+    }
+
+    .btn-success {
+        color: var(--btn-success-fg);
+        background-color: var(--btn-success-bg);
+    }
+
+    .btn-success:hover {
+        background-color: var(--btn-success-hover);
+    }
+
+    .btn-warning {
+        color: var(--btn-warning-fg);
+        background-color: var(--btn-warning-bg);
+    }
+
+    .btn-warning:hover {
+        background-color: var(--btn-warning-hover);
+    }
+
+    .btn-danger {
+        color: var(--btn-danger-fg);
+        background-color: var(--btn-danger-bg);
+    }
+
+    .btn-danger:hover {
+        background-color: var(--btn-danger-hover);
+    }
+
+    .btn-outline {
+        color: var(--btn-outline-fg);
+        border: 1.5px solid var(--btn-outline-fg);
+        background-color: transparent;
+    }
+
+    .btn-outline:hover {
+        background-color: oklch(0.24 0.04 250);
+        /* leve surface hover */
+    }
+
+    .btn-ghost {
+        color: var(--btn-ghost-fg);
+        background-color: transparent;
+    }
+
+    .btn-ghost:hover {
+        background-color: var(--btn-ghost-hover);
+    }
+}

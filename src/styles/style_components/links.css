@@ -1,0 +1,5 @@
+@layer components {
+  .links {
+    @apply text-[var(--link)] hover:text-[var(--link-hover)] active:text-[var(--link-active)] visited:text-[var(--link-visited)];
+  }
+}
