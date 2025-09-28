@@ -1,0 +1,14 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">DevNotes favicon</title>
+  <desc id="desc">Etiqueta autocerrada DN con padding para mejor legibilidad</desc>
+
+  <!-- Fondo oscuro -->
+  <rect width="256" height="256" fill="#0F172A" rx="40"/>
+
+  <!-- Texto central -->
+  <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle"
+        font-family="Consolas, Menlo, Monaco, 'Courier New', monospace"
+        font-size="64" font-weight="700" fill="#10B981">
+    &lt;DN /&gt;
+  </text>
+</svg>

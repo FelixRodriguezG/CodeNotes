@@ -25,7 +25,7 @@ export default function NotesList() {
         </Link>
       </div>
 
-      <div className="flex flex-col">
+      <div className="grid-cards">
         {notes.slice(0, 24).map((note) => (
           <NoteCard key={note.id} note={note} />
         ))}

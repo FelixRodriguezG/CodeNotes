@@ -15,14 +15,12 @@ export default function Navbar({ collapsed, onRequestExpand }) {
       onFocus={handleFocus}
     >
       <ul
-        className={`flex flex-col gap-2 ${
-          collapsed ? "opacity-0 pointer-events-none select-none" : ""
-        }`}
+        className={`flex flex-col gap-5 px-4`}
       >
         <li className="links">
-          <Link to="/" aria-label="Home" className="flex gap-2">
+          <Link to="/" aria-label="Home" className="flex gap-2 group">
             <svg
-              className="w-5 h-5 transition-transform group-hover:scale-105"
+              className="w-5 h-5 transition-transform group-hover:scale-150"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -40,9 +38,9 @@ export default function Navbar({ collapsed, onRequestExpand }) {
           </Link>
         </li>
         <li className="links">
-          <Link to="/notes" className="flex gap-2 items-center">
+          <Link to="/notes" className="flex gap-2 items-center group">
            <svg
-    className="w-5 h-5 transition-transform group-hover:scale-105"
+    className="w-5 h-5 transition-transform group-hover:scale-150"
     viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
     aria-hidden="true"

@@ -13,13 +13,5 @@
 @import "./styles/style_components/links.css";
 
 
-/* Estilos base necesarios */
-* {
-  box-sizing: border-box;
-}
 
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-}
+

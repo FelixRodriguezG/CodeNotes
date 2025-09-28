@@ -6,3 +6,9 @@
     box-shadow: var(--shadow-xl);
   }
 }
+
+@layer utilities {
+  .grid-cards{
+    @apply grid gap-8 list-none [grid-template-columns:repeat(auto-fit,minmax(600px,1fr))];
+  }
+}
