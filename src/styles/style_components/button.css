@@ -21,6 +21,20 @@
         ring-color: var(--btn-outline-ring);
     }
 
+    /* Secondary */
+    .btn-secondary {
+        @apply text-[var(--color-text)] bg-[var(--color-surface)] border border-[var(--color-border)];
+    }
+
+    .btn-secondary:hover {
+        @apply bg-[var(--color-elevated)];
+    }
+
+    .btn-secondary:active {
+        @apply bg-[var(--color-surface)];
+    }
+
+    /* Success */
     .btn-success {
         color: var(--btn-success-fg);
         background-color: var(--btn-success-bg);
@@ -30,6 +44,7 @@
         background-color: var(--btn-success-hover);
     }
 
+    /* Warning */
     .btn-warning {
         color: var(--btn-warning-fg);
         background-color: var(--btn-warning-bg);
@@ -39,6 +54,7 @@
         background-color: var(--btn-warning-hover);
     }
 
+    /* Danger */
     .btn-danger {
         color: var(--btn-danger-fg);
         background-color: var(--btn-danger-bg);
@@ -48,6 +64,7 @@
         background-color: var(--btn-danger-hover);
     }
 
+    /* Outline */
     .btn-outline {
         color: var(--btn-outline-fg);
         border: 1.5px solid var(--btn-outline-fg);
@@ -59,6 +76,7 @@
         /* leve surface hover */
     }
 
+    /* Ghost */
     .btn-ghost {
         color: var(--btn-ghost-fg);
         background-color: transparent;
