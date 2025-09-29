@@ -20,8 +20,8 @@ export default function NotesList() {
     <>
       <div className="flex items-center justify-between mb-4">
         <h1>Notes</h1>
-        <Link className="btn" to="/notes/new">
-          Nueva Nota
+        <Link className="btn btn-primary" to="/notes/new">
+          New card
         </Link>
       </div>
 

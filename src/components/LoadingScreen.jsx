@@ -1,11 +1,12 @@
-
+import Spinner from "./Spinner"
 export default function LoadingScreen({ 
   message = "Cargando...", 
   className = "" 
 }) {
   return (
     <div className={`min-h-screen flex items-center justify-center ${className}`}>
-      <p className="text-lg">{message}</p>
+      <Spinner />
+      <p className="text-lg text-white">{message}</p>
     </div>
   )
 }

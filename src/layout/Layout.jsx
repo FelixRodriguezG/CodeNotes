@@ -1,83 +1,131 @@
-import { useState } from "react"
-import { Outlet } from "react-router-dom"
+import { useState, useRef, useEffect } from "react"
+import { Outlet, useLocation } from "react-router-dom"
 import Navbar from "../components/Navbar"
 import Header from "../components/Header"
 
+import Button from "../components/button"
+
 import logo from "../assets/logo.svg"
-import favicon from "../assets/favicon.svg";
+import favicon from "../assets/favicon.svg"
 
 export default function Layout() {
-  const [ collapsed, setCollapsed ] = useState(false)
+  const [collapsed, setCollapsed] = useState(false)
+  const asideRef = useRef(null)
+  const mainRef = useRef(null)
+  const navbarRef = useRef(null)
+  const location = useLocation()
 
-  // Manejar eventos del teclado
+  // Enfoca el sidebar al cargar/cambiar de ruta
+  useEffect(() => {
+    if (asideRef.current) {
+      asideRef.current.focus()
+    }
+  }, [location])
+
+  // Si no hay foco y se presiona Tab, enfoca el primer elemento del Navbar
+  useEffect(() => {
+    const handleTab = (e) => {
+      const active = document.activeElement
+      
+      if (e.key === "Tab" && !e.shiftKey) {
+        // Si el foco está en body o main, redirigir al Navbar
+        if (active === document.body || active === mainRef.current) {
+          e.preventDefault()
+          
+          // Expandir sidebar temporalmente
+          setCollapsed(false)
+          
+          // Enfocar el primer enlace del Navbar
+          setTimeout(() => {
+            const firstLink = asideRef.current?.querySelector('a, button')
+            if (firstLink) {
+              firstLink.focus()
+            }
+          }, 50)
+        }
+      }
+    }
+    
+    window.addEventListener("keydown", handleTab)
+    return () => window.removeEventListener("keydown", handleTab)
+  }, [])
+
+  // Manejar eventos del teclado en el aside
   const handleKeyDown = (e) => {
     if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault() // Prevenir el comportamiento por defecto
+      e.preventDefault()
       setCollapsed(prev => !prev)
+    }
+    if (e.key === "Escape") {
+      setCollapsed(true)
+      e.target.blur()
+    }
+  }
+
+  // Manejar blur del aside (solo colapsar si el foco sale completamente del sidebar)
+  const handleAsideBlur = (e) => {
+    // Verificar si el nuevo foco está dentro del aside
+    if (!asideRef.current?.contains(e.relatedTarget)) {
+      setCollapsed(true)
     }
   }
 
   return (
-    <div className="layout-app" data-collapsed={collapsed ? "true" : "false"}>
-      <aside  className={[
-        "area-sidebar relative bg-[var(--sidebar-bg)] overflow-hidden",
-        // ancho colapsado vs expandido (solo ≥ md)
-        "md:transition-[width] md:duration-300",
-        "flex  md:flex-col  gap-8",
-        collapsed ? "md:w-[56px]" : "md:w-[220px]",
-      ].join(" ")}
+    <div
+      className="layout-app"
+      data-collapsed={collapsed ? "true" : "false"}
+    >
+      <aside
+        ref={asideRef}
+        tabIndex={-1}
+        className={[
+          "area-sidebar justify-around items-center md:justify-start md:items-start bg-[var(--sidebar-item-active-bg)] overflow-hidden",
+          "md:transition-[width] md:duration-300",
+          "flex md:flex-col gap-8 border-r-1 border-muted",
+          collapsed ? "md:w-[56px]" : "md:w-[220px]",
+        ].join(" ")}
+        onMouseEnter={() => setCollapsed(false)}
+        onMouseLeave={() => setCollapsed(true)}
+        onBlur={handleAsideBlur}
+        onKeyDown={handleKeyDown}
       >
+        <div className="h-18  object-cover overflow-hidden">
         {/* logo */}
-
         {collapsed ? (
           <img
             src={favicon}
             alt="DevNotes Short Logo"
-            className="h-18 mt-2 transition-all duration-300 w-auto"
+            className="hidden md:flex md:h-18 shrink-0 "
           />
-        ):(
+        ) : (
           <img
             src={logo}
             alt="DevNotes Logo"
-            className={`h-10 mt-3 transition-all duration-300 ${collapsed ? 'opacity-0' : 'w-auto'}`}
+            className={`hidden h-18 md:block ${
+              collapsed ? "opacity-0" : "w-auto"
+            }`}
           />
-
         )}
+
+        </div>
+
 
         {/* Contenido del menú */}
         <Navbar
+          ref={navbarRef}
           collapsed={collapsed}
           onRequestExpand={() => setCollapsed(false)}
         />
 
-        {/* Rail vertical clicable */}
-        <button
-          onClick={() => setCollapsed(v => !v)}
-          onKeyDown={handleKeyDown}
-          aria-expanded={!collapsed}
-          className={[
-            "hidden md:flex items-center justify-center",                 // solo en desktop
-            "absolute  top-1/2 -translate-y-1/2 w-[56px] z-10",
-            " cursor-pointer select-none rotate-180",
-            collapsed ? "right-0" : "left-1/2 -translate-x-1/2 ",
-            // texto vertical
-            collapsed ? "[writing-mode:vertical-rl] [text-orientation:mixed]" : "",
-            "[writing-mode:vertical-rl] [text-orientation:mixed]",
-            "text-[var(--text-lg)] tracking-[0.2em] uppercase",
-            "text-muted hover:text-text",
-            "focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--btn-outline-ring)]"
-          ].join(" ")}
-          title={collapsed ? "Click to expand" : "Click to hide"}
-        >
-          {collapsed ? "Click to expand" : "Click to hide"}
-        </button>
-
       </aside>
 
       {/* Resto del layout */}
-      <header className="area-header bg-bg p-4"><Header /></header>
-      <main className="area-main p-4 bg-[var(--sidebar-item-active-bg)]"> <Outlet /> </main>
-
+      <header className="area-header bg-bg p-4 border-b-1 border-muted">
+        <Header />
+      </header>
+      <main ref={mainRef} className="area-main p-4 bg-[var(--sidebar-bg)]">
+        <Outlet />
+      </main>
     </div>
   )
 }

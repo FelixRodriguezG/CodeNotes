@@ -1,4 +1,5 @@
 import React from "react";
+import Spinner from "./Spinner"
 
 const sizeToClass = {
   sm: "btn--sm",
@@ -19,6 +20,7 @@ export default function Button({
   const classes = [
     "btn",
     `btn-${variant}`,
+    "flex gap-2",
     sizeToClass[size] || "",
     isLoading ? "cursor-wait" : "cursor-pointer",
     className,
@@ -34,9 +36,7 @@ export default function Button({
       className={classes}
       {...props}
     >
-      {isLoading && (
-        <span className="inline-block w-4 h-4 border-2 border-current border-r-transparent rounded-full animate-spin" />
-      )}
+      {isLoading && <Spinner />}
       <span>{children}</span>
     </button>
   );

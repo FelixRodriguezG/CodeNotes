@@ -2,16 +2,19 @@ import { Link } from "react-router-dom";
 
 export default function NoteCard({ note }) {
   return (
-    <div className="card">
+    <article className="card">
       <h3>{note.title}</h3>
-      <div className="flex gap-4">
-        <Link className="btn" to={`/albums/${note.id}`}>
+      
+
+      <div className="flex gap-4 justify-end mt-auto">
+        <Link className="btn btn-outline" to={`/notes/${note.id}`}>
           Ver
         </Link>
-        <Link className="btn btn-secondary" to={`/albums/${note.id}/edit`}>
+        <Link className="btn btn-secondary " to={`/notes/${note.id}/edit`}>
           Editar
         </Link>
       </div>
-    </div>
+      
+    </article>
   );
 }

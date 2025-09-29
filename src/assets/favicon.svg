@@ -2,9 +2,6 @@
   <title id="title">DevNotes favicon</title>
   <desc id="desc">Etiqueta autocerrada DN con padding para mejor legibilidad</desc>
 
-  <!-- Fondo oscuro -->
-  <rect width="256" height="256" fill="#0F172A" rx="40"/>
-
   <!-- Texto central -->
   <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle"
         font-family="Consolas, Menlo, Monaco, 'Courier New', monospace"

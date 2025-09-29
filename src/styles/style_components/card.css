@@ -1,14 +1,11 @@
 @layer components {
   .card {
-    background-color: var(--color-white);
-    border-radius: var(--radius-lg);
-    padding: --spacing(6);
-    box-shadow: var(--shadow-xl);
+    @apply bg-[var(--sidebar-item-active-bg)] rounded-lg p-3 shadow-sm text-[var(--color-text)] transition duration-200 hover:-translate-y-1 hover:shadow-md border-1 border-[var(--color-border)] flex flex-col items-stretch md:min-h-30;
   }
 }
 
 @layer utilities {
   .grid-cards{
-    @apply grid gap-8 list-none [grid-template-columns:repeat(auto-fit,minmax(600px,1fr))];
+    @apply grid gap-8 list-none [grid-template-columns:repeat(auto-fit,minmax(250px,1fr))];
   }
 }
