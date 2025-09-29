@@ -19,7 +19,7 @@ export default function Layout() {
 
   return (
     <div className="layout-app" data-collapsed={collapsed ? "true" : "false"}>
-      <aside className={[
+      <aside  className={[
         "area-sidebar relative bg-[var(--sidebar-bg)] overflow-hidden",
         // ancho colapsado vs expandido (solo ≥ md)
         "md:transition-[width] md:duration-300",
