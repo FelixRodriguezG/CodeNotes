@@ -1,5 +1,6 @@
-@layer components {
+        @layer components {
   .links {
-    @apply text-[var(--link)] hover:text-[var(--link-hover)] active:text-[var(--link-active)] visited:text-[var(--link-visited)];
+    @apply text-[var(--sidebar-item)] hover:text-primary-500
+    p-2 active:text-[var(--link-active)] visited:text-[var(--link-visited)] hover:bg-[var(--link-hover)]/20;
   }
 }

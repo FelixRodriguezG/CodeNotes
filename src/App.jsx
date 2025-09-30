@@ -4,6 +4,7 @@ import LoadingScreen from "./components/LoadingScreen";
 import { NotesProvider } from "./context/NotesContext"; 
 import "./App.css";
 
+
 function App() {
   return (
     <NotesProvider>

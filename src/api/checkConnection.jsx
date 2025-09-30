@@ -4,7 +4,7 @@ export async function checkConnection() {
   const key = import.meta.env.VITE_SUPABASE_ANON_KEY
 
   if (!baseUrl || !path || !key) {
-    throw new Error("Faltan variables de entorno Supabase")
+    throw new Error("Faltan variables de entorno Supabase");
   }
 
   const res = await fetch(`${baseUrl}${path}`, {
@@ -17,7 +17,7 @@ export async function checkConnection() {
 
   if (!res.ok) {
     const text = await res.text()
-    throw new Error(`Error ${res.status}: ${text}`)
+    throw new Error(`Error ${res.status}: ${text}`);
   }
 
   return res.json()
