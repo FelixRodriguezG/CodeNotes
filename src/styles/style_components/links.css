@@ -1,6 +1,22 @@
-        @layer components {
-  .links {
-    @apply text-[var(--sidebar-item)] hover:text-primary-500
-    p-2 active:text-[var(--link-active)] visited:text-[var(--link-visited)] hover:bg-[var(--link-hover)]/20;
+@utility links {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  gap: 2rem; 
+  padding: 1em .5em;
+  color: var(--color-fg);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+@utility links {
+  @variant hover {
+    color: var(--color-primary-400);
+    background-color: color-mix(in oklab, #22c55e 30%, transparent);
   }
+}
+
+
+@utility links-active {
+  color: var(--color-primary-600);
+  background-color: color-mix(in oklab, var(--color-surface) 28%, transparent);
 }

@@ -9,7 +9,7 @@ import logo from "../assets/logo.svg"
 import favicon from "../assets/favicon.svg"
 
 export default function Layout() {
-  const [collapsed, setCollapsed] = useState(false)
+  const [ collapsed, setCollapsed ] = useState(false)
   const asideRef = useRef(null)
   const mainRef = useRef(null)
   const navbarRef = useRef(null)
@@ -20,21 +20,20 @@ export default function Layout() {
     if (asideRef.current) {
       asideRef.current.focus()
     }
-  }, [location])
+  }, [ location ])
 
   // Si no hay foco y se presiona Tab, enfoca el primer elemento del Navbar
   useEffect(() => {
     const handleTab = (e) => {
       const active = document.activeElement
-      
+
       if (e.key === "Tab" && !e.shiftKey) {
         // Si el foco está en body o main, redirigir al Navbar
         if (active === document.body || active === mainRef.current) {
           e.preventDefault()
-          
-          // Expandir sidebar temporalmente
+
           setCollapsed(false)
-          
+
           // Enfocar el primer enlace del Navbar
           setTimeout(() => {
             const firstLink = asideRef.current?.querySelector('a, button')
@@ -45,12 +44,12 @@ export default function Layout() {
         }
       }
     }
-    
+
     window.addEventListener("keydown", handleTab)
     return () => window.removeEventListener("keydown", handleTab)
   }, [])
 
-  // Manejar eventos del teclado en el aside
+  // Eventos teclado (accesibilidad)
   const handleKeyDown = (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault()
@@ -79,9 +78,10 @@ export default function Layout() {
         ref={asideRef}
         tabIndex={-1}
         className={[
-          "area-sidebar justify-around items-center md:justify-start md:items-start bg-[var(--sidebar-item-active-bg)] overflow-hidden",
+          "area-sidebar justify-around items-center", 
+          "md:justify-start md:items-start bg-bg overflow-hidden",
           "md:transition-[width] md:duration-300",
-          "flex md:flex-col gap-8 border-r-1 border-muted",
+          "flex md:flex-col gap-8",
           collapsed ? "md:w-[56px]" : "md:w-[220px]",
         ].join(" ")}
         onMouseEnter={() => setCollapsed(false)}
@@ -89,26 +89,31 @@ export default function Layout() {
         onBlur={handleAsideBlur}
         onKeyDown={handleKeyDown}
       >
-        <div className="h-18  object-cover overflow-hidden">
-        {/* logo */}
-        {collapsed ? (
-          <img
-            src={favicon}
-            alt="DevNotes Short Logo"
-            className="hidden md:flex md:h-18 shrink-0 "
-          />
-        ) : (
-          <img
-            src={logo}
-            alt="DevNotes Logo"
-            className={`hidden h-18 md:block ${
-              collapsed ? "opacity-0" : "w-auto"
-            }`}
-          />
-        )}
+        <div className="relative hidden md:flex h-8 w-full overflow-hidden px-2">
+  {/* Logo largo */}
+  <img
+    src={logo}
+    alt="DevNotes Logo"
+    aria-hidden={collapsed ? "true" : "false"}
+    className={[
+      "absolute inset-0 h-8 w-full object-contain",
+      "transition-opacity duration-300 ease-[var(--ease-fluid)]",
+      collapsed ? "opacity-0" : "opacity-100",
+    ].join(" ")}
+  />
 
-        </div>
-
+  {/* Logo corto */}
+  <img
+    src={favicon}
+    alt="DevNotes Short Logo"
+    aria-hidden={collapsed ? "false" : "true"}
+    className={[
+      "absolute inset-0 h-8 w-full object-contain",
+      "transition-opacity duration-300 ease-[var(--ease-fluid)]",
+      collapsed ? "opacity-100" : "opacity-0",
+    ].join(" ")}
+  />
+</div>
 
         {/* Contenido del menú */}
         <Navbar
@@ -120,10 +125,10 @@ export default function Layout() {
       </aside>
 
       {/* Resto del layout */}
-      <header className="area-header bg-bg p-4 border-b-1 border-muted">
+      <header className="area-header bg-bg px-4 py-2 border-b border-border">
         <Header />
       </header>
-      <main ref={mainRef} className="area-main p-4 bg-[var(--sidebar-bg)]">
+      <main ref={mainRef} className="area-main p-4 bg-bg">
         <Outlet />
       </main>
     </div>

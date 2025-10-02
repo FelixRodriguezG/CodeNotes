@@ -1,31 +1,32 @@
 import React from "react";
-import Spinner from "./Spinner"
+import Spinner from "./Spinner";
 
 const sizeToClass = {
-  sm: "btn--sm",
-  md: "btn--md",
-  lg: "btn--lg",
+  sm: "px-2 py-1 text-sm rounded-[var(--radius-sm)]",
+  md: "px-3 py-2 text-base rounded-[var(--radius-md)]",
+  lg: "px-4 py-3 text-lg rounded-[var(--radius-lg)]",
 };
 
 export default function Button({
   children,
   type = "button",
-  variant = "primary", // primary | success | warning | danger | outline | ghost
-  size = "md",        // sm | md | lg
+  variant = "primary", // primary | success | warning | danger | outline | ghost | secondary
+  size = "md",         // sm | md | lg
   disabled = false,
   isLoading = false,
   className = "",
   ...props
 }) {
   const classes = [
-    "btn",
-    `btn-${variant}`,
-    "flex gap-2",
-    sizeToClass[size] || "",
+    "btn",                 // base
+    `btn-${variant}`,      // variante (ya definida en tu CSS)
+    "inline-flex items-center justify-center gap-2 font-medium transition",
+    sizeToClass[size] || "", 
     isLoading ? "cursor-wait" : "cursor-pointer",
+    "disabled:opacity-50 disabled:cursor-not-allowed",
     className,
   ]
-    .filter(Boolean) // filtra valores vacios (ejemplo size="")
+    .filter(Boolean)
     .join(" ");
 
   return (

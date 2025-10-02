@@ -1,30 +1,49 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar({ collapsed, onRequestExpand }) {
-  const handleFocus = () => {
-    if (collapsed) onRequestExpand?.();
-  };
+  const handleFocus = () => { if (collapsed) onRequestExpand?.(); };
+
+  // Label: oculto en móvil, animación solo en ≥ md
+  const labelClasses = [
+    "hidden md:inline-block",
+    "whitespace-nowrap overflow-hidden",
+    "md:transition-[opacity,width] md:duration-300",
+    collapsed ? "md:w-0 md:opacity-0" : "md:w-20 md:opacity-100",
+  ].join(" ");
+
+  const linkClasses = (isActive) =>
+    [
+      "links group rounded-md",
+      "flex items-center",                  
+      "h-full md:h-auto",                  
+      "justify-center md:justify-start",   
+      "p-0 md:px-2 md:py-2",               
+      "focus-visible:outline-2 focus-visible:outline-ring",
+      isActive && "links-active",
+    ].filter(Boolean).join(" ");
 
   return (
     <nav
       aria-label="Navegación principal"
       data-collapsed={collapsed ? "true" : "false"}
       onFocus={handleFocus}
-      className="w-full"
+      className="w-full h-full"
     >
-      <ul className="flex  md:flex-col gap-5 mx-2">
-        <li className="links">
-          <Link to="/" aria-label="Home" className="flex gap-2 group items-center ">
-            <span className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+      <ul
+        className={[
+          "flex h-full items-stretch px-0", // base móvil (barra inferior)
+          "justify-around gap-0",           // móvil: repartidos
+          "md:flex-col md:justify-start md:items-stretch md:gap-5 md:px-2", // desktop: arriba/izq
+        ].join(" ")}
+      >
+        {/* Home */}
+        <li className="flex-1 md:flex-none">
+          <NavLink to="." end aria-label="Home" className={({ isActive }) => linkClasses(isActive)}>
+            <span className="w-4 h-4 flex items-center justify-center shrink-0">
               <svg
-                className="w-5 h-5 transition-transform group-hover:scale-150"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
+                className="w-6 h-6 transition-transform md:group-hover:scale-150 will-change-transform origin-center"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
               >
                 <path stroke="none" d="M0 0h24v24H0z" />
                 <path d="M5 12h-2l9-9 9 9h-2" />
@@ -32,22 +51,18 @@ export default function Navbar({ collapsed, onRequestExpand }) {
                 <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
               </svg>
             </span>
-            <span className={
-              "inline-block transition-all duration-200" +
-              (collapsed
-                ? " opacity-0 pointer-events-none"
-                : " w-20 opacity-100  ml-2 whitespace-nowrap")
-            }>Home</span>
-          </Link>
+            <span className={labelClasses}>Home</span>
+          </NavLink>
         </li>
-        <li className="links">
-          <Link to="/notes" className="flex gap-2 items-center group">
-            <span className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+
+        {/* Notas */}
+        <li className="flex-1 md:flex-none">
+          <NavLink to="notes" className={({ isActive }) => linkClasses(isActive)}>
+            <span className="w-4 h-4 flex items-center justify-center shrink-0">
               <svg
-                className="w-5 h-5 transition-transform group-hover:scale-150"
-                viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                aria-hidden="true"
+                className="w-6  h-6 transition-transform md:group-hover:scale-150 will-change-transform origin-center"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
               >
                 <path stroke="none" d="M0 0h24v24H0z" />
                 <path d="M5 5a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z" />
@@ -56,13 +71,8 @@ export default function Navbar({ collapsed, onRequestExpand }) {
                 <path d="M9 15h4" />
               </svg>
             </span>
-            <span className={
-              "inline-block transition-all duration-200" +
-              (collapsed
-                ? " opacity-0 pointer-events-none"
-                : " w-20 opacity-100 ml-2 whitespace-nowrap")
-            }>Notas</span>
-          </Link>
+            <span className={labelClasses}>Notas</span>
+          </NavLink>
         </li>
       </ul>
     </nav>

@@ -1,48 +1,69 @@
 @layer utilities {
-  /* ✅ ÚNICA utilidad que define TODO el layout + responsive + colapsado */
+  /* Layout principal */
   .layout-app {
-    @apply grid min-h-screen max-h-screen transition-[grid-template-columns] duration-300 ;
+    --sidebar-w: 220px;
+    --sidebar-w-collapsed: 90px;
+    --sidebar-border: 1px;
 
-    /* Base (móvil) — sin footer */
+    @apply grid min-h-dvh max-h-dvh overflow-hidden
+           transition-[grid-template-columns] duration-300;
+
+    /* Mobile: header | main | navbar */
     @apply [grid-template-areas:'header'_'main'_'sidebar']
            [grid-template-columns:1fr]
-           [grid-template-rows:auto_1fr];
+           [grid-template-rows:auto_1fr_56px];
 
-    /* ≥ md (usa tus breakpoints de @theme) — sidebar a la izquierda */
-    @apply md:[grid-template-areas:'sidebar_header'_'sidebar_main'_'sidebar_main']
-           md:[grid-template-columns:220px_1fr]
-           md:[grid-template-rows:auto_1fr];
-
-    /* Estado colapsado (deja franja 56px en desktop) con data-attribute */
-    @apply data-[collapsed=true]:md:[grid-template-columns:56px_1fr];
+    /* Desktop: sidebar | header + main */
+    @apply md:[grid-template-areas:'sidebar_header'_'sidebar_main']
+           md:[grid-template-columns:var(--sidebar-w)_1fr]
+           md:grid-rows-[auto_1fr];
   }
 
-  /* Áreas semánticas */
-  .area-header  { grid-area: header;}
-  .area-sidebar { grid-area: sidebar; }
-  .area-main    { grid-area: main; overflow-y:scroll;}
+  /* Estado colapsado (solo desktop) */
+  .layout-app[data-collapsed="true"] {
+    --sidebar-w: var(--sidebar-w-collapsed);
+  }
+
+  /* Header */
+  .area-header {
+    grid-area: header;
+  }
+
+  /* Sidebar/Navbar */
+  .area-sidebar {
+    grid-area: sidebar;
+    position: relative;
+    
+    /* Mobile: barra fija inferior centrada */
+    @apply w-full 
+           flex flex-row items-center ;
+
+    /* Desktop: panel lateral con scroll */
+    @apply md:h-auto md:w-[var(--sidebar-w)]
+           md:flex-col md:justify-start 
+           md:gap-4 
+           md:transition-[width]
+           md:border-t-0;
+
+    /* Borde derecho (solo desktop) */
+    &::after {
+      content: '';
+      @apply absolute top-0 right-0 bottom-0
+             w-[1px] bg-[var(--color-border)]
+             hidden md:block;
+    }
+  }
+
+  /* Área principal */
+  .area-main {
+    grid-area: main;
+    @apply overflow-y-auto 
+           min-w-0
+           overscroll-contain
+           [scrollbar-gutter:stable]
+           [content-visibility:auto]
+           [contain-intrinsic-size:1000px];
+  }
+
   
-
-  /* Footer oculto en móvil, visible ≥ md */
-  .layout-app .area-sidebar { @apply flex-row md:flex-col ; }
-
-}
-
-.area-main::-webkit-scrollbar {
-  width: 8px;
-  background: var(--color-bg); /* color de fondo */
-}
-
-.area-main::-webkit-scrollbar-thumb {
-  background: var(--color-primary); /* color de la barra */
-  border-radius: 4px;
-}
-
-.area-main::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary-300); /* color al pasar el mouse */
-}
-
-/* Firefox */
-.area-main {
-  scrollbar-color: var(--color-bg) var(--color-primary-400);
 }
