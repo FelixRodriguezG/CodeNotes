@@ -3,7 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 
-import Button from "../components/button";
+import Button from "../components/Button";
 
 import logo from "../assets/logo.svg";
 import favicon from "../assets/favicon.svg";

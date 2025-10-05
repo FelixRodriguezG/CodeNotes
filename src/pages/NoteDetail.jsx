@@ -7,7 +7,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import NoteBody from "../components/NoteBody";
 import Badge from "../components/Badge";
 import Modal from "../components/Modal";
-import Button from "../components/button";
+import Button from "../components/Button";
 import Toast from "../components/Toast";
 
 export default function NoteDetail() {

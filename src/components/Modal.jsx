@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import Button from "./button";
+import Button from "./Button";
 
 export default function Modal({
   open,

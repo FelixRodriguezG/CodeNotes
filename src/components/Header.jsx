@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useCheckConnection } from "../hooks/useCheckConnection";
 import avatarImg from "../assets/avatar.svg";
 import { ThemeToggle } from "./ThemeToggle";
-import Button from "../components/button";
+import Button from "../components/Button";
 import Avatar from "../components/Avatar";
 
 export default function Header() {
@@ -21,25 +21,27 @@ export default function Header() {
     const labels = {
       unreachable: "No alcanzable",
       error: "Error",
-      ok: "Conexión OK"
+      ok: "Conexión OK",
     };
-    return isLoading ? "Verificando..." : labels[status] || "Verificar conexión";
+    return isLoading
+      ? "Verificando..."
+      : labels[status] || "Verificar conexión";
   };
 
-  const avatar = <Avatar src={avatarImg} alt="Perfil de usuario" className="h-5 ml-auto" />;
+  const avatar = (
+    <Avatar src={avatarImg} alt="Perfil de usuario" className="h-5 ml-auto" />
+  );
 
   return (
     <div className="flex items-center gap-4 w-full pr-4 ml-auto">
       {status === "ok" && showSuccess && (
-        <span className="text-success">
-          Conexión OK
-        </span>
+        <span className="text-success">Conexión OK</span>
       )}
       {status !== "ok" && (
         <Button
           className=""
           onClick={run}
-          size = "sd"
+          size="sd"
           isLoading={isLoading}
           variant={status === "error" ? "danger" : "primary"}
         >
@@ -47,9 +49,8 @@ export default function Header() {
         </Button>
       )}
       <div className="flex ml-auto gap-3">
-
-      <ThemeToggle />
-      {avatar}
+        <ThemeToggle />
+        {avatar}
       </div>
     </div>
   );
