@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+  import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
 // Función generadora de API para cualquier tabla
@@ -19,7 +19,7 @@ export function createTableApi(table) {
       return data;
     },
     create: async (item) => {
-      const { data, error } = await supabase.from(table).insert([item]).select().single();
+      const { data, error } = await supabase.from(table).insert([ item ]).select().single();
       if (error) throw error;
       return data;
     },

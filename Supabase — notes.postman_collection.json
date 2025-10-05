@@ -1,0 +1,472 @@
+{
+	"info": {
+		"_postman_id": "7c782620-142a-4d2c-8e9e-3a53b5d8dbcc",
+		"name": "Supabase — notes",
+		"description": "Colección local para probar la tabla `notes` en Supabase REST (PostgREST).  \nUsa variables de COLECCIÓN: baseUrl, restUrl, apiKey, jwt, etc.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32390910"
+	},
+	"item": [
+		{
+			"name": "1) List — All (select=*)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 OK\", () => pm.response.code === 200);",
+							"pm.test(\"Array\", () => Array.isArray(pm.response.json()));",
+							"pm.test(\"Content-Range presente (count=exact)\", () => pm.response.headers.has('Content-Range'));"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{ANON_KEY}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ANON_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{restUri}}/notes?select=*",
+					"host": [
+						"{{restUri}}"
+					],
+					"path": [
+						"notes"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "*"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2) List — Pagination (Range 0-9)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{ANON_KEY}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ANON_KEY}}"
+					},
+					{
+						"key": "Prefer",
+						"value": "count=exact"
+					},
+					{
+						"key": "Range",
+						"value": "0-9"
+					}
+				],
+				"url": {
+					"raw": "{{restUri}}/notes?select=*",
+					"host": [
+						"{{restUri}}"
+					],
+					"path": [
+						"notes"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "*"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3) Search — title ilike *{{searchQ}}*",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{ANON_KEY}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ANON_KEY}}"
+					}
+				],
+				"url": {
+					"raw": "{{restUri}}/notes?select=*&title=ilike.*{{searchQuery}}*",
+					"host": [
+						"{{restUri}}"
+					],
+					"path": [
+						"notes"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "*"
+						},
+						{
+							"key": "title",
+							"value": "ilike.*{{searchQuery}}*"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4) Filter — tags contains {dev,docs}",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const csv = pm.collectionVariables.get('tagsCSV') || '';",
+							"const parts = csv.split(',').map(s=>s.trim()).filter(Boolean);",
+							"pm.variables.set('tagsSet', `{${parts.join(',')}}`);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{ANON_KEY}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ANON_KEY}}"
+					}
+				],
+				"url": {
+					"raw": "{{restUri}}/notes?select=*&tags=cs.{{tagsSet}}",
+					"host": [
+						"{{restUri}}"
+					],
+					"path": [
+						"notes"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "*"
+						},
+						{
+							"key": "tags",
+							"value": "cs.{{tagsSet}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5) Get by ID (id=eq.{{noteId}})",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{ANON_KEY}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ANON_KEY}}"
+					}
+				],
+				"url": {
+					"raw": "{{restUri}}/notes?select=*&id=eq.{{noteId}}",
+					"host": [
+						"{{restUri}}"
+					],
+					"path": [
+						"notes"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "*"
+						},
+						{
+							"key": "id",
+							"value": "eq.{{noteId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6) Create (POST /notes)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"201/200 con representación\", ()=> [200,201].includes(pm.response.code));",
+							"const json = pm.response.json();",
+							"pm.collectionVariables.set('noteId', (json && json[0] && json[0].id) || pm.collectionVariables.get('noteId'));"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{ANON_KEY}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ANON_KEY}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Prefer",
+						"value": "return=representation",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"My first note\",\n  \"summary\": \"Short summary\",\n  \"body\": \"Full note content...\",\n  \"tags\": [\"js\",\"css\"]\n}"
+				},
+				"url": {
+					"raw": "{{restUri}}/notes",
+					"host": [
+						"{{restUri}}"
+					],
+					"path": [
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8) Update (PATCH /notes?id=eq.{{noteId}})",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{ANON_KEY}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ANON_KEY}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Prefer",
+						"value": "return=representation"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"summary\": \"Edited summary\",\n  \"tags\": [\"dev\",\"docs\",\"edited\"]\n}"
+				},
+				"url": {
+					"raw": "{{restUri}}/notes?id=eq.{{noteId}}",
+					"host": [
+						"{{restUri}}"
+					],
+					"path": [
+						"notes"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "eq.{{noteId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9) Delete (DELETE /notes?id=eq.{{noteId}})",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 No Content\", ()=> pm.response.code === 204);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{ANON_KEY}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ANON_KEY}}"
+					}
+				],
+				"url": {
+					"raw": "{{restUri}}/notes?id=eq.{{noteId}}",
+					"host": [
+						"{{restUri}}"
+					],
+					"path": [
+						"notes"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "eq.{{noteId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Connetion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{functionsUrl}}/check-db-connection",
+					"host": [
+						"{{functionsUrl}}"
+					],
+					"path": [
+						"check-db-connection"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{apiKey}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://YOUR_PROJECT.supabase.co"
+		},
+		{
+			"key": "ANON_KEY",
+			"value": "YOUR_ANON_KEY"
+		},
+		{
+			"key": "searchQuery",
+			"value": "note"
+		},
+		{
+			"key": "noteId",
+			"value": "00000000-0000-0000-0000-000000000000"
+		},
+		{
+			"key": "tagsSet",
+			"value": "dev,docs"
+		},
+		{
+			"key": "functionsUrl",
+			"value": ""
+		},
+		{
+			"key": "restUri",
+			"value": ""
+		},
+		{
+			"value": ""
+		}
+	]
+}
