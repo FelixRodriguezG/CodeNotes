@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react"
-import { checkConnection } from "../api/CheckConnection"
+import { checkConnection } from "../api/checkConnection"
 
 export function useCheckConnection(autoResetMs = 2500) {
     const [ status, setStatus ] = useState("idle") // idle | loading | ok | unreachable | error
