@@ -29,9 +29,9 @@ export default function Header() {
   const avatar = <Avatar src={avatarImg} alt="Perfil de usuario" className="h-5 ml-auto" />;
 
   return (
-    <div className="flex items-center  gap-4 w-full pr-4 ml-auto">
+    <div className="flex items-center gap-4 w-full pr-4 ml-auto">
       {status === "ok" && showSuccess && (
-        <span className="text-success font-medium ">
+        <span className="text-success">
           Conexión OK
         </span>
       )}
@@ -39,6 +39,7 @@ export default function Header() {
         <Button
           className=""
           onClick={run}
+          size = "sd"
           isLoading={isLoading}
           variant={status === "error" ? "danger" : "primary"}
         >

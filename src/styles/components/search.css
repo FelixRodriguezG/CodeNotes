@@ -1,0 +1,80 @@
+@layer components {
+  /* Contenedor principal */
+  .search-container {
+    @apply w-full;
+  }
+
+  /* Formulario de búsqueda */
+  .search-form {
+    @apply flex flex-col gap-4 
+           md:flex-row md:items-center 
+           rounded-lg w-full;
+  }
+
+  /* Campo de búsqueda */
+  .search-input-container {
+    @apply flex-1 relative;
+  }
+
+  .search-input {
+    @apply w-full pl-10 pr-4 py-1.5 
+           rounded-md 
+           bg-elevated text-fg 
+           placeholder-muted 
+           border border-border 
+           focus:outline-none focus:ring-2 focus:ring-ring
+           transition-all duration-200;
+  }
+
+  /* Icono de búsqueda */
+  .search-icon {
+    @apply h-3 w-3 
+           absolute left-3 top-1/2 
+           transform -translate-y-1/2 
+           text-muted;
+  }
+
+  /* Contenedor de filtros */
+  .search-filters {
+    @apply flex flex-wrap gap-2;
+  }
+
+  /* Selectores */
+  .search-select {
+    @apply px-2 py-1.5 
+           rounded-md 
+           bg-elevated text-fg 
+           border border-border 
+           focus:outline-none focus:ring-2 focus:ring-ring
+           transition-all duration-200;
+  }
+
+  /* Botón de búsqueda */
+  .search-button {
+    @apply px-2 py-1 
+           bg-primary-600 text-fg font-bold 
+           hover:bg-primary-700 
+           rounded-md 
+           focus:outline-none focus:ring-2 focus:ring-ring
+           transition-all duration-200;
+  }
+
+  /* Botón móvil */
+  .search-mobile-button {
+    @apply md:hidden 
+           flex items-center justify-center 
+           p-1 rounded-md 
+           bg-surface hover:bg-elevated 
+           transition-all duration-200;
+  }
+
+  /* Contenedor desktop */
+  .search-desktop {
+    @apply hidden md:block w-full;
+  }
+
+  /* Modal móvil */
+  .search-modal-content {
+    @apply p-4;
+  }
+}

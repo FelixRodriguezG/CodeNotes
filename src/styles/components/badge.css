@@ -1,0 +1,529 @@
+@layer components {
+  /* Base común para todos los badges */
+  .badge-base {
+    @apply inline-flex items-center justify-center
+           px-2 py-0.5
+           text-xs font-semibold
+           rounded-full
+           shadow-sm
+           ring-1 ring-inset
+           transition-all duration-200;
+  }
+
+  /* JavaScript */
+  .badge-js,
+  .badge-javascript {
+    @apply bg-amber-400/20 text-amber-200 ring-amber-500;
+  }
+  :root[data-theme="light"] .badge-js,
+  :root[data-theme="light"] .badge-javascript {
+    @apply bg-amber-100/90 text-amber-900 ring-amber-400;
+  }
+
+  /* TypeScript */
+  .badge-ts,
+  .badge-typescript {
+    @apply bg-blue-400/20 text-blue-200 ring-blue-500;
+  }
+  :root[data-theme="light"] .badge-ts,
+  :root[data-theme="light"] .badge-typescript {
+    @apply bg-blue-100/90 text-blue-900 ring-blue-400;
+  }
+
+  /* React */
+  .badge-react {
+    @apply bg-cyan-400/20 text-cyan-200 ring-cyan-500;
+  }
+  :root[data-theme="light"] .badge-react {
+    @apply bg-cyan-100/90 text-cyan-900 ring-cyan-400;
+  }
+
+  /* Next.js */
+  .badge-next {
+    @apply bg-slate-400/20 text-slate-200 ring-slate-500;
+  }
+  :root[data-theme="light"] .badge-next {
+    @apply bg-slate-100/90 text-slate-900 ring-slate-400;
+  }
+
+  /* Vue */
+  .badge-vue {
+    @apply bg-emerald-400/20 text-emerald-200 ring-emerald-500;
+  }
+  :root[data-theme="light"] .badge-vue {
+    @apply bg-emerald-100/90 text-emerald-900 ring-emerald-400;
+  }
+
+  /* Svelte */
+  .badge-svelte {
+    @apply bg-orange-400/20 text-orange-200 ring-orange-500;
+  }
+  :root[data-theme="light"] .badge-svelte {
+    @apply bg-orange-100/90 text-orange-900 ring-orange-400;
+  }
+
+  /* Angular */
+  .badge-angular {
+    @apply bg-red-500/20 text-red-200 ring-red-600;
+  }
+  :root[data-theme="light"] .badge-angular {
+    @apply bg-red-100/90 text-red-900 ring-red-400;
+  }
+
+  /* CSS */
+  .badge-css {
+    @apply bg-sky-400/20 text-sky-200 ring-sky-500;
+  }
+  :root[data-theme="light"] .badge-css {
+    @apply bg-sky-100/90 text-sky-900 ring-sky-400;
+  }
+
+  /* HTML */
+  .badge-html {
+    @apply bg-orange-400/20 text-orange-200 ring-orange-500;
+  }
+  :root[data-theme="light"] .badge-html {
+    @apply bg-orange-100/90 text-orange-900 ring-orange-400;
+  }
+
+  /* Node.js */
+  .badge-node {
+    @apply bg-green-400/20 text-green-200 ring-green-500;
+  }
+  :root[data-theme="light"] .badge-node {
+    @apply bg-green-100/90 text-green-900 ring-green-400;
+  }
+
+  /* Express */
+  .badge-express {
+    @apply bg-stone-400/20 text-stone-200 ring-stone-500;
+  }
+  :root[data-theme="light"] .badge-express {
+    @apply bg-stone-100/90 text-stone-900 ring-stone-400;
+  }
+
+  /* MongoDB */
+  .badge-mongo,
+  .badge-mongodb {
+    @apply bg-emerald-400/20 text-emerald-200 ring-emerald-500;
+  }
+  :root[data-theme="light"] .badge-mongo,
+  :root[data-theme="light"] .badge-mongodb {
+    @apply bg-emerald-100/90 text-emerald-900 ring-emerald-400;
+  }
+
+  /* SQL */
+  .badge-sql {
+    @apply bg-blue-400/20 text-blue-200 ring-blue-500;
+  }
+  :root[data-theme="light"] .badge-sql {
+    @apply bg-blue-100/90 text-blue-900 ring-blue-400;
+  }
+
+  /* MySQL */
+  .badge-mysql {
+    @apply bg-sky-400/20 text-sky-200 ring-sky-500;
+  }
+  :root[data-theme="light"] .badge-mysql {
+    @apply bg-sky-100/90 text-sky-900 ring-sky-400;
+  }
+
+  /* PostgreSQL */
+  .badge-postgresql {
+    @apply bg-indigo-400/20 text-indigo-200 ring-indigo-500;
+  }
+  :root[data-theme="light"] .badge-postgresql {
+    @apply bg-indigo-100/90 text-indigo-900 ring-indigo-400;
+  }
+
+  /* API */
+  .badge-api {
+    @apply bg-violet-400/20 text-violet-200 ring-violet-500;
+  }
+  :root[data-theme="light"] .badge-api {
+    @apply bg-violet-100/90 text-violet-900 ring-violet-400;
+  }
+
+  /* HTTP */
+  .badge-http {
+    @apply bg-rose-400/20 text-rose-200 ring-rose-500;
+  }
+  :root[data-theme="light"] .badge-http {
+    @apply bg-rose-100/90 text-rose-900 ring-rose-400;
+  }
+
+  /* Auth */
+  .badge-auth {
+    @apply bg-purple-400/20 text-purple-200 ring-purple-500;
+  }
+  :root[data-theme="light"] .badge-auth {
+    @apply bg-purple-100/90 text-purple-900 ring-purple-400;
+  }
+
+  /* JWT */
+  .badge-jwt {
+    @apply bg-fuchsia-400/20 text-fuchsia-200 ring-fuchsia-500;
+  }
+  :root[data-theme="light"] .badge-jwt {
+    @apply bg-fuchsia-100/90 text-fuchsia-900 ring-fuchsia-400;
+  }
+
+  /* Array */
+  .badge-array {
+    @apply bg-pink-400/20 text-pink-200 ring-pink-500;
+  }
+  :root[data-theme="light"] .badge-array {
+    @apply bg-pink-100/90 text-pink-900 ring-pink-400;
+  }
+
+  /* Snippet */
+  .badge-snippet {
+    @apply bg-teal-400/20 text-teal-200 ring-teal-500;
+  }
+  :root[data-theme="light"] .badge-snippet {
+    @apply bg-teal-100/90 text-teal-900 ring-teal-400;
+  }
+
+  /* RegExp */
+  .badge-regex {
+    @apply bg-lime-400/20 text-lime-200 ring-lime-500;
+  }
+  :root[data-theme="light"] .badge-regex {
+    @apply bg-lime-100/90 text-lime-900 ring-lime-400;
+  }
+
+  /* Git */
+  .badge-git {
+    @apply bg-orange-400/20 text-orange-200 ring-orange-500;
+  }
+  :root[data-theme="light"] .badge-git {
+    @apply bg-orange-100/90 text-orange-900 ring-orange-400;
+  }
+
+  /* GitHub */
+  .badge-github {
+    @apply bg-zinc-600/20 text-zinc-200 ring-zinc-500;
+  }
+  :root[data-theme="light"] .badge-github {
+    @apply bg-zinc-100/90 text-zinc-900 ring-zinc-400;
+  }
+
+  /* Docker */
+  .badge-docker {
+    @apply bg-sky-400/20 text-sky-200 ring-sky-500;
+  }
+  :root[data-theme="light"] .badge-docker {
+    @apply bg-sky-100/90 text-sky-900 ring-sky-400;
+  }
+
+  /* Linux */
+  .badge-linux {
+    @apply bg-neutral-500/20 text-neutral-200 ring-neutral-600;
+  }
+  :root[data-theme="light"] .badge-linux {
+    @apply bg-neutral-100/90 text-neutral-900 ring-neutral-400;
+  }
+
+  /* Shell */
+  .badge-shell {
+    @apply bg-stone-400/20 text-stone-200 ring-stone-500;
+  }
+  :root[data-theme="light"] .badge-shell {
+    @apply bg-stone-100/90 text-stone-900 ring-stone-400;
+  }
+
+  /* Testing */
+  .badge-testing {
+    @apply bg-violet-400/20 text-violet-200 ring-violet-500;
+  }
+  :root[data-theme="light"] .badge-testing {
+    @apply bg-violet-100/90 text-violet-900 ring-violet-400;
+  }
+
+  /* Jest */
+  .badge-jest {
+    @apply bg-pink-400/20 text-pink-200 ring-pink-500;
+  }
+  :root[data-theme="light"] .badge-jest {
+    @apply bg-pink-100/90 text-pink-900 ring-pink-400;
+  }
+
+  /* UI/UX */
+  .badge-ui,
+  .badge-ux {
+    @apply bg-fuchsia-400/20 text-fuchsia-200 ring-fuchsia-500;
+  }
+  :root[data-theme="light"] .badge-ui,
+  :root[data-theme="light"] .badge-ux {
+    @apply bg-fuchsia-100/90 text-fuchsia-900 ring-fuchsia-400;
+  }
+
+  /* SEO */
+  .badge-seo {
+    @apply bg-lime-400/20 text-lime-200 ring-lime-500;
+  }
+  :root[data-theme="light"] .badge-seo {
+    @apply bg-lime-100/90 text-lime-900 ring-lime-400;
+  }
+
+  /* Performance */
+  .badge-performance {
+    @apply bg-yellow-400/20 text-yellow-200 ring-yellow-500;
+  }
+  :root[data-theme="light"] .badge-performance {
+    @apply bg-yellow-100/90 text-yellow-900 ring-yellow-400;
+  }
+
+  /* Security */
+  .badge-security {
+    @apply bg-red-500/20 text-red-200 ring-red-600;
+  }
+  :root[data-theme="light"] .badge-security {
+    @apply bg-red-100/90 text-red-900 ring-red-400;
+  }
+
+  /* Default */
+  .badge-default {
+    @apply bg-gray-400/20 text-gray-200 ring-gray-500;
+  }
+  :root[data-theme="light"] .badge-default {
+    @apply bg-gray-100/90 text-gray-900 ring-gray-400;
+  }
+}
+ {
+  /* Base común */
+  .badge-base {
+    @apply inline-flex items-center justify-center
+           px-2 py-0.5
+           text-xs font-medium
+           rounded-full
+           shadow-sm
+           ring-1 ring-inset
+           transition-all duration-200;
+  }
+
+  /* JavaScript */
+  .badge-js,
+  .badge-javascript {
+    @apply bg-yellow-300/30 text-yellow-800 ring-yellow-400
+           dark:bg-yellow-400/20 dark:text-red-200 dark:ring-yellow-500;
+  }
+
+  /* TypeScript */
+  .badge-ts,
+  .badge-typescript {
+    @apply bg-blue-300/30 text-blue-900 ring-blue-400
+           dark:bg-blue-400/20 dark:text-blue-200 dark:ring-blue-500;
+  }
+
+  /* React */
+  .badge-react {
+    @apply bg-cyan-300/30 text-cyan-900 ring-cyan-400
+           dark:bg-cyan-400/20 dark:text-cyan-200 dark:ring-cyan-500;
+  }
+
+  /* Next.js */
+  .badge-next {
+    @apply bg-gray-300/30 text-gray-900 ring-gray-400
+           dark:bg-gray-700/20 dark:text-gray-200 dark:ring-gray-600;
+  }
+
+  /* Vue */
+  .badge-vue {
+    @apply bg-green-300/30 text-green-900 ring-green-400
+           dark:bg-green-400/20 dark:text-green-200 dark:ring-green-500;
+  }
+
+  /* Svelte */
+  .badge-svelte {
+    @apply bg-orange-300/30 text-orange-900 ring-orange-400
+           dark:bg-orange-400/20 dark:text-orange-200 dark:ring-orange-500;
+  }
+
+  /* Angular */
+  .badge-angular {
+    @apply bg-red-300/30 text-red-900 ring-red-400
+           dark:bg-red-500/20 dark:text-red-200 dark:ring-red-600;
+  }
+
+  /* CSS */
+  .badge-css {
+    @apply bg-sky-300/30 text-sky-900 ring-sky-400
+           dark:bg-sky-400/20 dark:text-sky-200 dark:ring-sky-500;
+  }
+
+  /* HTML */
+  .badge-html {
+    @apply bg-orange-300/30 text-orange-900 ring-orange-400
+           dark:bg-orange-400/20 dark:text-orange-200 dark:ring-orange-500;
+  }
+
+  /* Node.js */
+  .badge-node {
+    @apply bg-emerald-300/30 text-emerald-900 ring-emerald-400
+           dark:bg-emerald-400/20 dark:text-emerald-200 dark:ring-emerald-500;
+  }
+
+  /* Express */
+  .badge-express {
+    @apply bg-stone-300/30 text-stone-900 ring-stone-400
+           dark:bg-stone-400/20 dark:text-stone-200 dark:ring-stone-500;
+  }
+
+  /* MongoDB */
+  .badge-mongo,
+  .badge-mongodb {
+    @apply bg-emerald-300/30 text-emerald-900 ring-emerald-400
+           dark:bg-emerald-400/20 dark:text-emerald-200 dark:ring-emerald-500;
+  }
+
+  /* SQL (genérico) */
+  .badge-sql {
+    @apply bg-blue-300/30 text-blue-900 ring-blue-400
+           dark:bg-blue-400/20 dark:text-blue-200 dark:ring-blue-500;
+  }
+
+  /* MySQL */
+  .badge-mysql {
+    @apply bg-sky-300/30 text-sky-900 ring-sky-400
+           dark:bg-sky-400/20 dark:text-sky-200 dark:ring-sky-500;
+  }
+
+  /* PostgreSQL */
+  .badge-postgresql {
+    @apply bg-indigo-300/30 text-indigo-900 ring-indigo-400
+           dark:bg-indigo-400/20 dark:text-indigo-200 dark:ring-indigo-500;
+  }
+
+  /* API */
+  .badge-api {
+    @apply bg-indigo-300/30 text-indigo-900 ring-indigo-400
+           dark:bg-indigo-400/20 dark:text-indigo-200 dark:ring-indigo-500;
+  }
+
+  /* HTTP */
+  .badge-http {
+    @apply bg-orange-300/30 text-orange-900 ring-orange-400
+           dark:bg-orange-400/20 dark:text-orange-200 dark:ring-orange-500;
+  }
+
+  /* Auth */
+  .badge-auth {
+    @apply bg-violet-300/30 text-violet-900 ring-violet-400
+           dark:bg-violet-400/20 dark:text-violet-200 dark:ring-violet-500;
+  }
+
+  /* JWT */
+  .badge-jwt {
+    @apply bg-purple-300/30 text-purple-900 ring-purple-400
+           dark:bg-purple-400/20 dark:text-purple-200 dark:ring-purple-500;
+  }
+
+  /* Array / estructuras */
+  .badge-array {
+    @apply bg-pink-300/30 text-pink-900 ring-pink-400
+           dark:bg-pink-400/20 dark:text-pink-200 dark:ring-pink-500;
+  }
+
+  /* Snippet */
+  .badge-snippet {
+    @apply bg-emerald-300/30 text-emerald-900 ring-emerald-400
+           dark:bg-emerald-400/20 dark:text-emerald-200 dark:ring-emerald-500;
+  }
+
+  /* RegExp */
+  .badge-regex {
+    @apply bg-fuchsia-300/30 text-fuchsia-900 ring-fuchsia-400
+           dark:bg-fuchsia-400/20 dark:text-fuchsia-200 dark:ring-fuchsia-500;
+  }
+
+  /* Git */
+  .badge-git {
+    @apply bg-orange-300/30 text-orange-900 ring-orange-400
+           dark:bg-orange-400/20 dark:text-orange-200 dark:ring-orange-500;
+  }
+
+  /* GitHub */
+  .badge-github {
+    @apply bg-gray-300/30 text-gray-900 ring-gray-400
+           dark:bg-gray-600/20 dark:text-gray-200 dark:ring-gray-500;
+  }
+
+  /* Docker */
+  .badge-docker {
+    @apply bg-sky-300/30 text-sky-900 ring-sky-400
+           dark:bg-sky-400/20 dark:text-sky-200 dark:ring-sky-500;
+  }
+
+  /* Linux */
+  .badge-linux {
+    @apply bg-zinc-300/30 text-zinc-900 ring-zinc-400
+           dark:bg-zinc-500/20 dark:text-zinc-200 dark:ring-zinc-600;
+  }
+
+  /* Shell */
+  .badge-shell {
+    @apply bg-gray-300/30 text-gray-900 ring-gray-400
+           dark:bg-gray-600/20 dark:text-gray-200 dark:ring-gray-500;
+  }
+
+  /* Testing */
+  .badge-testing {
+    @apply bg-teal-300/30 text-teal-900 ring-teal-400
+           dark:bg-teal-400/20 dark:text-teal-200 dark:ring-teal-500;
+  }
+
+  /* Jest */
+  .badge-jest {
+    @apply bg-rose-300/30 text-rose-900 ring-rose-400
+           dark:bg-rose-400/20 dark:text-rose-200 dark:ring-rose-500;
+  }
+
+  /* Cypress */
+  .badge-cypress {
+    @apply bg-emerald-300/30 text-emerald-900 ring-emerald-400
+           dark:bg-emerald-400/20 dark:text-emerald-200 dark:ring-emerald-500;
+  }
+
+  /* UI */
+  .badge-ui {
+    @apply bg-fuchsia-300/30 text-fuchsia-900 ring-fuchsia-400
+           dark:bg-fuchsia-400/20 dark:text-fuchsia-200 dark:ring-fuchsia-500;
+  }
+
+  /* UX */
+  .badge-ux {
+    @apply bg-fuchsia-300/30 text-fuchsia-900 ring-fuchsia-400
+           dark:bg-fuchsia-400/20 dark:text-fuchsia-200 dark:ring-fuchsia-500;
+  }
+
+  /* Accesibilidad */
+  .badge-accessibility {
+    @apply bg-emerald-300/30 text-emerald-900 ring-emerald-400
+           dark:bg-emerald-400/20 dark:text-emerald-200 dark:ring-emerald-500;
+  }
+
+  /* SEO */
+  .badge-seo {
+    @apply bg-lime-300/30 text-lime-900 ring-lime-400
+           dark:bg-lime-400/20 dark:text-lime-200 dark:ring-lime-500;
+  }
+
+  /* Performance */
+  .badge-performance {
+    @apply bg-yellow-300/30 text-yellow-900 ring-yellow-400
+           dark:bg-yellow-400/20 dark:text-yellow-200 dark:ring-yellow-500;
+  }
+
+  /* Security */
+  .badge-security {
+    @apply bg-red-300/30 text-red-900 ring-red-400
+           dark:bg-red-500/20 dark:text-red-200 dark:ring-red-600;
+  }
+
+  /* Default (fallback) */
+  .badge-default {
+    @apply bg-amber-300/30 text-amber-900 ring-amber-400
+           dark:bg-amber-400/20 dark:text-amber-200 dark:ring-amber-500;
+  }
+}

@@ -3,8 +3,8 @@ import Spinner from "./Spinner";
 
 const sizeToClass = {
   sm: "px-2 py-1 text-sm rounded-[var(--radius-sm)]",
-  md: "px-3 py-2 text-base rounded-[var(--radius-md)]",
-  lg: "px-4 py-3 text-lg rounded-[var(--radius-lg)]",
+  md: "px-2 py-1 text-base rounded-[var(--radius-md)]",
+  lg: "px-4 py-2 text-lg rounded-[var(--radius-lg)]",
 };
 
 export default function Button({
@@ -37,7 +37,7 @@ export default function Button({
       className={classes}
       {...props}
     >
-      {isLoading && <Spinner />}
+      {isLoading && <Spinner className="w-2 h-2" />}
       <span>{children}</span>
     </button>
   );

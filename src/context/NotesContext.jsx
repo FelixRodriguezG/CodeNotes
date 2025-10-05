@@ -68,12 +68,15 @@ export function NotesProvider({ children }) {
 
   const fetchNote = useCallback(
     async (id) => {
-      dispatch({ type: "LOADING" });
-      const cached = state.notes.find((n) => String(n.id) === String(id));
-      if (cached) {
-        dispatch({ type: "SET_SELECTED", note: cached });
+      if (!id) return;
+
+      // Verificar si ya tenemos la nota en el estado
+      const existingNote = state.notes.find((note) => note.id === id);
+      if (existingNote && state.selected?.id === id) {
         return;
       }
+
+      dispatch({ type: "LOADING" });
       try {
         const data = await NotesApi.get(id);
         dispatch({ type: "SET_SELECTED", note: data });
@@ -81,7 +84,7 @@ export function NotesProvider({ children }) {
         dispatch({ type: "ERROR", error: err.message });
       }
     },
-    [state.notes]
+    [state.notes, state.selected]
   );
 
   const createNote = useCallback(async (payload) => {

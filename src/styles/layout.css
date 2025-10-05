@@ -33,10 +33,16 @@
   .area-sidebar {
     grid-area: sidebar;
     position: relative;
-    
+    outline: none; /* Quita el outline por defecto */
+
     /* Mobile: barra fija inferior centrada */
     @apply w-full 
-           flex flex-row items-center ;
+           flex flex-row items-center;
+
+    /* Solo muestra outline cuando se navega con teclado */
+    &:focus-visible {
+      @apply outline-2 outline-offset-2 outline-[var(--color-ring)];
+    }
 
     /* Desktop: panel lateral con scroll */
     @apply md:h-auto md:w-[var(--sidebar-w)]
@@ -47,7 +53,7 @@
 
     /* Borde derecho (solo desktop) */
     &::after {
-      content: '';
+      content: "";
       @apply absolute top-0 right-0 bottom-0
              w-[1px] bg-[var(--color-border)]
              hidden md:block;
@@ -64,6 +70,4 @@
            [content-visibility:auto]
            [contain-intrinsic-size:1000px];
   }
-
-  
 }

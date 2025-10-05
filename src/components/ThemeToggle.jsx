@@ -11,9 +11,9 @@ export function ThemeToggle() {
       aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
     >
       {theme === 'dark' ? (
-        <SunIcon className="w-5 h-5 text-warning" />
+        <span className="w-5 h-5 text-warning font-bold">&lt;LightMode /&gt;</span>
       ) : (
-        <MoonIcon className="w-5 h-5 text-text" />
+        <span className="w-5 h-5 font-bold">&lt;DarkMode /&gt;</span>
       )}
     </button>
   );
